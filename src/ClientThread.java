@@ -22,8 +22,8 @@ public class ClientThread extends Thread {
 	//private Socket clientSocket;
 	private InterfaceClient ic;
 	private MulticastSocket ms;
-	private InetAddress gpAddr;
-	private int gpPort;
+//	private InetAddress gpAddr;
+//	private int gpPort;
 	private boolean sender;
 	public boolean keepOn = true;
 
@@ -73,10 +73,14 @@ public class ClientThread extends Thread {
 				//String out = "";
 				//String out = socIn.readLine(); // lit depuis le socket
 				
-				int sizereceived = 1000;
+				int sizereceived = 10000;
 				byte[] bytereceived = new byte[sizereceived];
+				
 				ms.receive(new DatagramPacket(bytereceived,sizereceived));
-				String msgreceived = bytereceived.toString();
+				String msgreceived = "";
+				
+				msgreceived = bytereceived.toString();
+				msgreceived = new String(bytereceived);
 				System.out.println(msgreceived);
 
 				ic.messageArea.append(msgreceived + "\n");
